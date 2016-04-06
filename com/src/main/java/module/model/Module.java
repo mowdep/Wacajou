@@ -11,6 +11,13 @@ public class Module {
 	private String path;
 	private String module_name;
 	
+	public void create(int id, int id_respo, String module_name, String path){
+		this.id = id;
+		this.id_respo = id_respo;
+		this.module_name = module_name;
+		this.path = path;
+	}
+	
  	public int getId() {
 		return id;
 	}
