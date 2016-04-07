@@ -1,7 +1,9 @@
-package com.wacajou;
-
+package com.wacajou.module.view;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
+
+import org.springframework.boot.test.SpringApplicationConfiguration;
 
 import com.vaadin.annotations.Theme;
 import com.vaadin.navigator.Navigator;
@@ -9,17 +11,19 @@ import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.spring.navigator.SpringViewProvider;
 import com.vaadin.ui.Button;
-import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.themes.ValoTheme;
 
+
+
 @Theme("valo")
-@SpringUI
-public class MyVaadinUI extends UI{
+@SpringUI(path="/module")
+public class UIModule extends UI{
 
 	@Autowired
     private SpringViewProvider viewProvider;
@@ -33,8 +37,8 @@ public class MyVaadinUI extends UI{
 
         final CssLayout navigationBar = new CssLayout();
         navigationBar.addStyleName(ValoTheme.LAYOUT_COMPONENT_GROUP);
-        navigationBar.addComponent(createNavigationButton("View Scoped View",
-        		ViewScopedView.VIEW_NAME));
+        navigationBar.addComponent(createNavigationButton("Create View",
+        		CreateView.VIEW_NAME));
         root.addComponent(navigationBar);
 
         final Panel viewContainer = new Panel();
