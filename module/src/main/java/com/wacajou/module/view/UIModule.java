@@ -2,6 +2,10 @@ package com.wacajou.module.view;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+
+
+import org.springframework.boot.test.SpringApplicationConfiguration;
+
 import com.vaadin.annotations.Theme;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
@@ -10,10 +14,14 @@ import com.vaadin.spring.navigator.SpringViewProvider;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
+
 import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
+
+import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.themes.ValoTheme;
 
 
@@ -26,6 +34,7 @@ public class UIModule extends UI{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
 	@Autowired
     private SpringViewProvider viewProvider;
 
@@ -43,7 +52,6 @@ public class UIModule extends UI{
         root.addComponent(navigationBar);
 
         final Panel viewContainer = new Panel();
-        viewContainer.setSizeFull();
         root.addComponent(viewContainer);
         root.setExpandRatio(viewContainer, 1.0f);
 
@@ -60,6 +68,7 @@ public class UIModule extends UI{
 			 * 
 			 */
 			private static final long serialVersionUID = 1L;
+
 
 			public void buttonClick(ClickEvent event) {
 				getUI().getNavigator().navigateTo(viewName);

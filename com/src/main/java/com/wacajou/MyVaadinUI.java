@@ -25,7 +25,7 @@ public class MyVaadinUI extends UI{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	@Autowired
     private SpringViewProvider viewProvider;
 
