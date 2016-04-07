@@ -10,11 +10,15 @@ import com.vaadin.ui.VerticalLayout;
 
 @SpringView(name = ViewScopedView.VIEW_NAME)
 public class ViewScopedView extends VerticalLayout implements View {
+<<<<<<< HEAD
     /**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	public static final String VIEW_NAME = "view";
+=======
+    public static final String VIEW_NAME = "view";
+>>>>>>> origin/MaximeTest
 
     @PostConstruct
     void init() {

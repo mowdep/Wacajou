@@ -10,6 +10,7 @@ import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.spring.annotation.UIScope;
 import com.vaadin.ui.FormLayout;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 import com.wacajou.entity.Module;
@@ -43,7 +44,10 @@ public class CreateView extends VerticalLayout implements View {
 		form.addComponent(name);
 		
 		final TextField id_respo = new TextField("Identifiant du responsable");
+<<<<<<< HEAD:module/src/main/java/com/wacajou/module/view/CreateView.java
 		form.addComponent(id_respo);
+=======
+>>>>>>> origin/MaximeTest:module/src/main/java/com/wacajou/module/view/CreateView.java
 		
 		addComponent(form);
 	}

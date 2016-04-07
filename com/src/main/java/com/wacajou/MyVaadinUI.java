@@ -21,11 +21,14 @@ import com.vaadin.ui.themes.ValoTheme;
 @SpringUI
 public class MyVaadinUI extends UI{
 
+<<<<<<< HEAD
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
+=======
+>>>>>>> origin/MaximeTest
 	@Autowired
     private SpringViewProvider viewProvider;
 
@@ -56,11 +59,14 @@ public class MyVaadinUI extends UI{
         button.addStyleName(ValoTheme.BUTTON_SMALL);
         // If you didn't choose Java 8 when creating the project, convert this to an anonymous listener class
         button.addClickListener(new ClickListener(){
+<<<<<<< HEAD
 			/**
 			 * 
 			 */
 			private static final long serialVersionUID = 1L;
 
+=======
+>>>>>>> origin/MaximeTest
 			public void buttonClick(ClickEvent event) {
 				getUI().getNavigator().navigateTo(viewName);
 				

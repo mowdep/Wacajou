@@ -2,18 +2,32 @@ package com.wacajou.module.view;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+<<<<<<< HEAD
+=======
+
+import org.springframework.boot.test.SpringApplicationConfiguration;
+
+>>>>>>> origin/MaximeTest
 import com.vaadin.annotations.Theme;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.spring.navigator.SpringViewProvider;
 import com.vaadin.ui.Button;
+<<<<<<< HEAD
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
+=======
+>>>>>>> origin/MaximeTest
 import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
+<<<<<<< HEAD
+=======
+import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Button.ClickListener;
+>>>>>>> origin/MaximeTest
 import com.vaadin.ui.themes.ValoTheme;
 
 
@@ -22,10 +36,13 @@ import com.vaadin.ui.themes.ValoTheme;
 @SpringUI(path="/module")
 public class UIModule extends UI{
 
+<<<<<<< HEAD
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+=======
+>>>>>>> origin/MaximeTest
 	@Autowired
     private SpringViewProvider viewProvider;
 
@@ -56,11 +73,14 @@ public class UIModule extends UI{
         button.addStyleName(ValoTheme.BUTTON_SMALL);
         // If you didn't choose Java 8 when creating the project, convert this to an anonymous listener class
         button.addClickListener(new ClickListener(){
+<<<<<<< HEAD
 			/**
 			 * 
 			 */
 			private static final long serialVersionUID = 1L;
 
+=======
+>>>>>>> origin/MaximeTest
 			public void buttonClick(ClickEvent event) {
 				getUI().getNavigator().navigateTo(viewName);
 				

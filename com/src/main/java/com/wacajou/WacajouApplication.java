@@ -7,6 +7,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+<<<<<<< HEAD
+=======
+
+import com.vaadin.spring.annotation.SpringComponent;
+>>>>>>> origin/MaximeTest
 
 
 @SpringBootApplication
