@@ -1,5 +1,4 @@
-package com.wacajou;
-
+package com.wacajou.module.view;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,15 +16,16 @@ import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
 
+
+
 @Theme("valo")
-@SpringUI
-public class MyVaadinUI extends UI{
+@SpringUI(path="/module")
+public class UIModule extends UI{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
 	@Autowired
     private SpringViewProvider viewProvider;
 
@@ -38,8 +38,8 @@ public class MyVaadinUI extends UI{
 
         final CssLayout navigationBar = new CssLayout();
         navigationBar.addStyleName(ValoTheme.LAYOUT_COMPONENT_GROUP);
-        navigationBar.addComponent(createNavigationButton("View Scoped View",
-        		ViewScopedView.VIEW_NAME));
+        navigationBar.addComponent(createNavigationButton("Create View",
+        		CreateView.VIEW_NAME));
         root.addComponent(navigationBar);
 
         final Panel viewContainer = new Panel();

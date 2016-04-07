@@ -10,6 +10,10 @@ import com.vaadin.ui.VerticalLayout;
 
 @SpringView(name = DefautView.VIEW_NAME )
 public class DefautView extends VerticalLayout implements View{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public static final String VIEW_NAME = "";
 	
 	@PostConstruct
@@ -18,7 +22,6 @@ public class DefautView extends VerticalLayout implements View{
 	}
 	@Override
 	public void enter(ViewChangeEvent event) {
-		// TODO Auto-generated method stub
 		
 	}
 
