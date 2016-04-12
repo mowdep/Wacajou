@@ -24,4 +24,15 @@ public class DAOParcoursModule {
 		return null;
 	}
 
+
+	public void insert(int id_parcours, int id_module, boolean option) {
+		ParcoursModule parcoursmodule = new ParcoursModule();
+		parcoursmodule.setId_parcours(id_parcours);
+		parcoursmodule.setId_module(id_module);
+		parcoursmodule.setOptional(option);
+		em.getTransaction().begin();
+		em.persist(parcoursmodule);
+		em.getTransaction().commit();
+	}
+
 }

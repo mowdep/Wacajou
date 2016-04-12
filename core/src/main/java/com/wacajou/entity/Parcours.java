@@ -1,17 +1,24 @@
 package com.wacajou.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 public class Parcours {
 
 	@Id
+	@GeneratedValue
 	private int idParcours;
-	private String name;
+	private String parcoursName;
 	private String path;
 	private int idRespo;
-
+	
+	public void create(String name, String path) {
+		this.parcoursName = name;
+		this.path = path;
+	}
+	
 	public int getId() {
 		return idParcours;
 	}
@@ -21,11 +28,11 @@ public class Parcours {
 	}
 
 	public String getName() {
-		return name;
+		return parcoursName;
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		this.parcoursName = name;
 	}
 
 	public String getPath() {

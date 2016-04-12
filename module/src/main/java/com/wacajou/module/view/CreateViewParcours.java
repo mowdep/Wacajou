@@ -1,5 +1,7 @@
 package com.wacajou.module.view;
 
+import java.util.Vector;
+
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.servlet.http.Cookie;
@@ -13,31 +15,31 @@ import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.Page;
 import com.vaadin.server.VaadinService;
 import com.vaadin.spring.annotation.SpringView;
-import com.vaadin.server.Sizeable.Unit;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Image;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
-import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.ui.ComboBox;
 import com.wacajou.component.AddModuleComponent;
 import com.wacajou.entity.Module;
 import com.wacajou.module.controller.CreateModule;
+import com.wacajou.module.controller.CreateParcours;
 import com.wacajou.module.message.LangText;
 
 @SpringView(name = CreateViewParcours.VIEW_NAME)
-public class CreateViewParcours extends VerticalLayout implements View{
-	public static final String VIEW_NAME = "test";
+public class CreateViewParcours extends VerticalLayout implements View {
+	public static final String VIEW_NAME = "createParcours";
 
 	private String lang = "en";
 	private LangText lab;
-	
+
 	@PostConstruct
-	public void init(){
+	public void init() {
+
 		Cookie[] cookies = VaadinService.getCurrentRequest().getCookies();
 		lang = "fr";
 		for (Cookie cookie : cookies) {
@@ -49,79 +51,83 @@ public class CreateViewParcours extends VerticalLayout implements View{
 		lab = new LangText(lang);
 		setMargin(true);
 		setSpacing(true);
-		
-		final FormLayout form = new FormLayout();
-		final TextField id = new TextField();
-		id.setRequired(true);
-		id.setInputPrompt(lab.LABEL_ID_PARCOURS);
-		id.setDescription(lab.LABEL_ID_PARCOURS);
-		id.addValidator(new NullValidator("Valeur non valide", false));
-		form.addComponent(id);
-		
-		final TextField name = new TextField();
-		name.setRequired(true);
-		name.setInputPrompt(lab.LABEL_NAME_PARCOURS);
-		name.setDescription(lab.LABEL_NAME_PARCOURS);
-		name.addValidator(new NullValidator(lang, false));
-		form.addComponent(name);
 
-		final TextField id_respo = new TextField();
-		id_respo.setInputPrompt(lab.LABEL_ID_RESPO_PARCOURS);
-		id_respo.setDescription(lab.LABEL_ID_RESPO_PARCOURS);
+		final FormLayout formLayout = new FormLayout();
 
-		form.addComponent(id_respo);
+		final TextField nameComponent = new TextField();
+		nameComponent.setRequired(true);
+		nameComponent.setInputPrompt(lab.LABEL_NAME_PARCOURS);
+		nameComponent.setDescription(lab.LABEL_NAME_PARCOURS);
+		nameComponent.addValidator(new NullValidator(lang, false));
+		formLayout.addComponent(nameComponent);
 
-		final TextArea desc = new TextArea();
-		desc.setInputPrompt(lab.LABEL_DESC_PARCOURS);
-		desc.setDescription(lab.LABEL_DESC_PARCOURS);
-		form.addComponent(desc);
+		final TextField idRespoComponent = new TextField();
+		idRespoComponent.setInputPrompt(lab.LABEL_ID_RESPO_PARCOURS);
+		idRespoComponent.setDescription(lab.LABEL_ID_RESPO_PARCOURS);
 
-		EntityManager em = JPAContainerFactory.createEntityManagerForPersistenceUnit("isep");
-		CachingMutableLocalEntityProvider<Module> entityProvider = new CachingMutableLocalEntityProvider<Module>(
-				Module.class, em);
-		JPAContainer<Module> JPAModule = new JPAContainer<Module>(Module.class);
-		JPAModule.setEntityProvider(entityProvider);
-		AddModuleComponent comp = new AddModuleComponent("test", JPAModule);
-		comp.setHeight(500, Unit.PIXELS);
-		form.addComponent(comp);
-		
+		formLayout.addComponent(idRespoComponent);
+
+		final TextArea descriptionComponent = new TextArea();
+		descriptionComponent.setInputPrompt(lab.LABEL_DESC_PARCOURS);
+		descriptionComponent.setDescription(lab.LABEL_DESC_PARCOURS);
+		formLayout.addComponent(descriptionComponent);
+
+		final AddModuleComponent addModuleComponent = new AddModuleComponent(
+				"Modules");
+		formLayout.addComponent(addModuleComponent);
+
+		final AddModuleComponent addModuleOptionalComponent = new AddModuleComponent(
+				"Modules Optionels");
+		formLayout.addComponent(addModuleOptionalComponent);
+
 		final Image img = new Image();
 
 		final Button submit = new Button(lab.BUTTON_SUBMIT_PARCOURS);
 		submit.addClickListener(new ClickListener() {
 			public void buttonClick(ClickEvent event) {
-				if(id.isValid() && name.isValid()){
-					
+				if (nameComponent.isValid()) {
+
 					// Creation de la variable englobant les variable récupérer
-					String[] cmd = new String[4];
-					cmd[0] = id.getValue();
-					cmd[1] = name.getValue();
-					cmd[2] = desc.getValue();
-					cmd[3] = id_respo.getValue();
-					
+					String[] values = new String[4];
+					values[0] = nameComponent.getValue();
+					values[1] = descriptionComponent.getValue();
+					values[2] = idRespoComponent.getValue();
+
+					Vector<String> module = addModuleComponent.getModuleToAdd();
+					Vector<String> moduleOptional = addModuleOptionalComponent
+							.getModuleToAdd();
+
 					// Execution de la class pour créer le module ( controller )
-					CreateModule nwModule = new CreateModule(lang, cmd);
-									
+					CreateParcours nwParcours = new CreateParcours(lang,
+							values, module, moduleOptional);
+
 					// Affichage des erreurs / Sucess de la création de module
-					if(nwModule.erreur != null){
-						new Notification(nwModule.erreur, Notification.Type.ERROR_MESSAGE).show(Page.getCurrent());
-					}else{
-						new Notification(nwModule.sucess, Notification.Type.HUMANIZED_MESSAGE).show(Page.getCurrent());
-					}
-				}else{
-					new Notification("Les champs ne sont pas rempli ou non valide", Notification.Type.HUMANIZED_MESSAGE).show(Page.getCurrent());
-				}
+					if (nwParcours.erreur != null)
+						new Notification(nwParcours.erreur,
+								Notification.Type.ERROR_MESSAGE).show(Page
+								.getCurrent());
+					else
+						new Notification(nwParcours.sucess,
+								Notification.Type.HUMANIZED_MESSAGE).show(Page
+								.getCurrent());
+
+				} else
+					new Notification(
+							"Les champs ne sont pas rempli ou non valide",
+							Notification.Type.HUMANIZED_MESSAGE).show(Page
+							.getCurrent());
+
 			}
 		});
-		form.addComponent(submit);
+		formLayout.addComponent(submit);
 
-		addComponent(form);
+		addComponent(formLayout);
 	}
-	
+
 	@Override
 	public void enter(ViewChangeEvent event) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 }

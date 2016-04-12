@@ -6,14 +6,22 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
-import com.wacajou.module.model.DAOModule;
+import com.wacajou.architecture.CreateArchi;
+import com.wacajou.architecture.CreateConfigFile;
 
 @SpringBootApplication
 public class WacajouApplication {
-	
+
+
+
 	public static void main(String[] args) {
-		ApplicationContext ctx = SpringApplication.run(WacajouApplication.class, args);
-		// getAllBean(ctx);
+		/* Launch application */
+		ApplicationContext ctx = SpringApplication.run(
+				WacajouApplication.class, args);
+		getAllBean(ctx);
+		CreateConfigFile cf = new CreateConfigFile();
+		cf.getFile();
+	 	CreateArchi archi = new CreateArchi(cf.getPath());
 	}
 
 	private static void getAllBean(ApplicationContext ctx) {
@@ -26,5 +34,4 @@ public class WacajouApplication {
 		}
 	}
 
-	
 }

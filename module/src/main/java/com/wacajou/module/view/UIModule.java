@@ -2,10 +2,6 @@ package com.wacajou.module.view;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-
-
-import org.springframework.boot.test.SpringApplicationConfiguration;
-
 import com.vaadin.annotations.Theme;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
@@ -14,14 +10,10 @@ import com.vaadin.spring.navigator.SpringViewProvider;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
-
 import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
-
-import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.themes.ValoTheme;
 
 
@@ -62,15 +54,9 @@ public class UIModule extends UI{
     private Button createNavigationButton(String caption, final String viewName) {
         Button button = new Button(caption);
         button.addStyleName(ValoTheme.BUTTON_SMALL);
-        // If you didn't choose Java 8 when creating the project, convert this to an anonymous listener class
+
         button.addClickListener(new ClickListener(){
-			/**
-			 * 
-			 */
-			private static final long serialVersionUID = 1L;
-
-
-			public void buttonClick(ClickEvent event) {
+        	public void buttonClick(ClickEvent event) {
 				getUI().getNavigator().navigateTo(viewName);
 				
 			}   	

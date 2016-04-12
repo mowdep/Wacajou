@@ -3,7 +3,6 @@ package com.wacajou.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.NamedQuery;
 
 @Entity
 //@NamedQuery(name = "ByModuleId", query = "SELECT pm FROM ParcoursModule WHERE c.idModule = :idModule ")

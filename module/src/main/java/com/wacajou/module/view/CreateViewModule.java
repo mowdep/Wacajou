@@ -1,28 +1,34 @@
 package com.wacajou.module.view;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+
 import javax.annotation.PostConstruct;
 import javax.servlet.http.Cookie;
 
-import com.vaadin.data.validator.IntegerRangeValidator;
 import com.vaadin.data.validator.NullValidator;
-import com.vaadin.event.FieldEvents.FocusEvent;
-import com.vaadin.event.FieldEvents.FocusListener;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.server.FileResource;
 import com.vaadin.server.Page;
 import com.vaadin.server.VaadinService;
-import com.vaadin.server.VaadinSession;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.spring.annotation.UIScope;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.ui.Embedded;
 import com.vaadin.ui.FormLayout;
-import com.vaadin.ui.Image;
-import com.vaadin.ui.Label;
+import com.vaadin.ui.Layout;
 import com.vaadin.ui.Notification;
+import com.vaadin.ui.Panel;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.TextField;
+import com.vaadin.ui.Upload;
+import com.vaadin.ui.Upload.Receiver;
+import com.vaadin.ui.Upload.SucceededEvent;
+import com.vaadin.ui.Upload.SucceededListener;
 import com.vaadin.ui.VerticalLayout;
 import com.wacajou.module.controller.CreateModule;
 import com.wacajou.module.message.LangText;
@@ -51,18 +57,10 @@ public class CreateViewModule extends VerticalLayout implements View {
 			}
 		}
 		lab = new LangText(lang);
-		setHeight(400, Unit.PIXELS);
-		setWidth(400, Unit.PIXELS);
 		setMargin(true);
 		setSpacing(true);
 
 		final FormLayout form = new FormLayout();
-		final TextField id = new TextField();
-		id.setRequired(true);
-		id.setInputPrompt(lab.LABEL_ID_PARCOURS);
-		id.setDescription(lab.LABEL_ID_PARCOURS);
-		id.addValidator(new NullValidator("Valeur non valide", false));
-		form.addComponent(id);
 		
 		final TextField name = new TextField();
 		name.setRequired(true);
@@ -81,20 +79,64 @@ public class CreateViewModule extends VerticalLayout implements View {
 		desc.setInputPrompt(lab.LABEL_DESC_PARCOURS);
 		desc.setDescription(lab.LABEL_DESC_PARCOURS);
 		form.addComponent(desc);
+		
+		final Embedded image = new Embedded("Uploaded Image");
+		image.setVisible(false);
 
-		final Image img = new Image();
+		// Implement both receiver that saves upload in a file and
+		// listener for successful upload
+		class ImageUploader implements Receiver, SucceededListener {
+		    public File file;
+
+		    public OutputStream receiveUpload(String filename,
+		                                      String mimeType) {
+		        // Create upload stream
+		        FileOutputStream fos = null; // Stream to write to
+		        try {
+		            // Open the file for writing.
+		            file = new File("B:\\tmp\\uploads\\" + filename);
+		            fos = new FileOutputStream(file);
+		        } catch (final java.io.FileNotFoundException e) {
+		            new Notification("Could not open file<br/>",
+		                             e.getMessage(),
+		                             Notification.Type.ERROR_MESSAGE)
+		                .show(Page.getCurrent());
+		            return null;
+		        }
+		        return fos; // Return the output stream to write to
+		    }
+
+		    public void uploadSucceeded(SucceededEvent event) {
+		        // Show the uploaded file in the image viewer
+		        image.setVisible(true);
+		        image.setSource(new FileResource(file));
+		    }
+		};
+		final ImageUploader receiver = new ImageUploader();
+
+		// Create the upload with a caption and set receiver later
+		Upload upload = new Upload("Upload Image Here", receiver);
+		upload.setButtonCaption("Start Upload");
+		upload.addSucceededListener(receiver);
+
+		// Put the components in a panel
+		Panel panel = new Panel("Cool Image Storage");
+		Layout panelContent = new VerticalLayout();
+		panelContent.addComponents(upload, image);
+	    panel.setContent(panelContent);
+	    form.addComponent(panel);
 
 		final Button submit = new Button(lab.BUTTON_SUBMIT_PARCOURS);
 		submit.addClickListener(new ClickListener() {
 			public void buttonClick(ClickEvent event) {
-				if(id.isValid() && name.isValid()){
+				if(name.isValid()){
 					
 					// Creation de la variable englobant les variable récupérer
 					String[] cmd = new String[4];
-					cmd[0] = id.getValue();
-					cmd[1] = name.getValue();
-					cmd[2] = desc.getValue();
-					cmd[3] = id_respo.getValue();
+					cmd[0] = name.getValue();
+					cmd[1] = desc.getValue();
+					cmd[2] = id_respo.getValue();
+					cmd[3] = receiver.file.getPath();
 					
 					// Execution de la class pour créer le module ( controller )
 					CreateModule nwModule = new CreateModule(lang, cmd);

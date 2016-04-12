@@ -31,7 +31,7 @@ public class DAOModule {
 	}
 
 	public Module getModuleByName(String name) throws SQLException {
-		Query query = em.createNativeQuery("SELECT * FROM MODULE WHERE MODULENAME = " + name, Module.class);
+		Query query = em.createNativeQuery("SELECT * FROM MODULE WHERE MODULENAME LIKE \'" + name + "\'", Module.class);
 		Module result = (Module) query.getSingleResult();
 		return result;
 	}
@@ -72,15 +72,15 @@ public class DAOModule {
 		JPAModule.refresh();
 	}
 
-	public void insert(int id, String name, String path, int id_respo) {
+	public void insert(String name, String path, int id_respo) {
 		Module nwModule = new Module();
-		nwModule.create(id, name, path);
+		nwModule.create(name, path);
 		if (id_respo != 0)
 			nwModule.setId_respo(id_respo);
 		em.getTransaction().begin();
 		em.persist(nwModule);
 		em.getTransaction().commit();
-		JPAModule.refresh();
+		JPAModule.refresh();		
 	}
 
 }

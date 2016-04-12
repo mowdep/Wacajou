@@ -14,24 +14,23 @@ public class Module {
 	@Id
 	@GeneratedValue
 	private int idModule;
-	
+
 	private int idRespo;
-	
+
 	private String path;
-	
+
 	private String moduleName;
 
 	public Module() {
 	}
-	
+
 	public Module(String module_name, String path) {
 		this.path = path;
 		this.moduleName = module_name;
 	}
 
-	public void create(int id, String module_name, String path) {
-		this.idModule = id;
-		this.moduleName = module_name;
+	public void create(String name, String path) {
+		this.moduleName = name;
 		this.path = path;
 	}
 
@@ -66,8 +65,10 @@ public class Module {
 	public void setModule_name(String module_name) {
 		this.moduleName = module_name;
 	}
+
 	public String toString() {
-		return String.format("Module[id=%d, moduleName='%s', path='%s']", idModule,
-				moduleName, path);
+		return String.format("Module[id=%d, moduleName='%s', path='%s']",
+				idModule, moduleName, path);
 	}
+
 }
