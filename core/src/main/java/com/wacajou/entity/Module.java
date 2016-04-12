@@ -4,11 +4,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import com.vaadin.spring.annotation.SpringComponent;
+import com.vaadin.spring.annotation.VaadinSessionScope;
+
+@SpringComponent
+@VaadinSessionScope
 @Entity
 public class Module {
 	@Id
 	@GeneratedValue
-	private Long id;
+	private int idModule;
 	
 	private int idRespo;
 	
@@ -24,18 +29,18 @@ public class Module {
 		this.moduleName = module_name;
 	}
 
-	public void create(long id, String module_name, String path) {
-		this.id = id;
+	public void create(int id, String module_name, String path) {
+		this.idModule = id;
 		this.moduleName = module_name;
 		this.path = path;
 	}
 
-	public Long getId() {
-		return id;
+	public int getId() {
+		return idModule;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setId(int id) {
+		this.idModule = id;
 	}
 
 	public int getId_respo() {
@@ -62,7 +67,7 @@ public class Module {
 		this.moduleName = module_name;
 	}
 	public String toString() {
-		return String.format("Module[id=%d, moduleName='%s', path='%s']", id,
+		return String.format("Module[id=%d, moduleName='%s', path='%s']", idModule,
 				moduleName, path);
 	}
 }

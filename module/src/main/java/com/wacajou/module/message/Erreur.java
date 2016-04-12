@@ -6,6 +6,7 @@ public class Erreur {
 	public String MESSAGE_MODULE_VALIDATION = "";
 	public String MESSAGE_MODULE_XML_CREATE = "";
 	public String MESSAGE_MODULE_SQL = "";
+	public String MESSAGE_MODULE_XML_MODIF = "";
 	
 	public Erreur(){
 		
@@ -16,6 +17,7 @@ public class Erreur {
 			MESSAGE_MODULE_VALIDATION = "Les valeurs rentrées ne correspondent pas aux données demandées."; 
 			MESSAGE_MODULE_XML_CREATE = "Erreur lors de la création du module";
 			MESSAGE_MODULE_SQL = "Erreur lors de la création du module";
+			MESSAGE_MODULE_XML_MODIF = "Erreur lors de la création d'un attribut";
 		}else if(lang.equals("en")){
 			
 		}

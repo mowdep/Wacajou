@@ -48,7 +48,7 @@ public class UIModule extends UI{
         final CssLayout navigationBar = new CssLayout();
         navigationBar.addStyleName(ValoTheme.LAYOUT_COMPONENT_GROUP);
         navigationBar.addComponent(createNavigationButton("Create View",
-        		CreateView.VIEW_NAME));
+        		CreateViewModule.VIEW_NAME));
         root.addComponent(navigationBar);
 
         final Panel viewContainer = new Panel();
