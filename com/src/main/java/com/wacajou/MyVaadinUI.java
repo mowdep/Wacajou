@@ -21,7 +21,7 @@ public class MyVaadinUI extends UI{
 	
 	@Override
 	protected void init(VaadinRequest vaadinRequest) {
-		// TODO Auto-generated method stub
+		// TODO Generate admin consol interface of configuration
 		final VerticalLayout root = new VerticalLayout();
 		root.setSizeFull();
 		root.setMargin(true);
