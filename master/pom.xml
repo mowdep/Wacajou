@@ -78,6 +78,7 @@
 	<modules>
 		<module>C:/Users/ISEP/git/Wacajou/com</module>
 		
-		<module>core</module>
+		
+		<module>data</module>
 	</modules>
 </project>
