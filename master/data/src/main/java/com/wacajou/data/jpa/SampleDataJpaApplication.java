@@ -20,16 +20,21 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 @Configuration
 @ComponentScan
 @EnableAutoConfiguration
 public class SampleDataJpaApplication {
-
+	/* Just run data framework application. 
+	Possible test DAO implementation */
+	
 	public static void main(String[] args) throws Exception {
-		// ApplicationContext applicationContext = new
-		// ClassPathXmlApplicationContext("/application-context.xml");
 		SpringApplication.run(SampleDataJpaApplication.class, args);
+		
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.wacajou.data.jpa.service;
+package com.wacajou.data.jpa.repository;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
