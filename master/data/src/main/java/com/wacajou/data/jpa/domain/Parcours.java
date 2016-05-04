@@ -10,12 +10,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Parcours implements Serializable{
+public class Parcours extends AbstractEntity{
 	private static final long serialVersionUID = 1L;
 	
-	@Id
-	private int id;
-	
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "parcours")
 	private Set<ParcoursModule> parcoursModule;
 	
@@ -39,10 +37,6 @@ public class Parcours implements Serializable{
 	public Parcours(String name, String path){
 		this.name = name;
 		this.path = path;
-	}
-	
-	public int getId(){
-		return this.id;
 	}
 	
 	public String getName(){

@@ -9,12 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 @Entity
-public class UserParcours implements Serializable {
+public class UserParcours extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
-
-	@Id
-	@GeneratedValue
-	private Long id;
 	
 	@OneToOne(fetch = FetchType.LAZY, targetEntity = User.class)
 	private User user;

@@ -1,22 +1,18 @@
 package com.wacajou.data.jpa.domain;
 
-import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 
 @Entity
-public class User implements Serializable{
+public class User extends AbstractEntity{
 	private static final long serialVersionUID = 1L;
 	
-	@Id
-	private int id;
 	@Column(nullable = true)
 	private String fname;
 	@Column(nullable = true)
@@ -39,18 +35,15 @@ public class User implements Serializable{
 		
 	}
 	
-	public User(int id, Statut statut){
-		this.id = id;
+	public User(Statut statut){
 		this.statut = statut;
 	}
 	
-	public void Create(int id, Statut statut){
-		this.id = id;
+	public void Create(Statut statut){
 		this.statut = statut;
 	}
 	
-	public void Create(int id, String promo, Statut statut){
-		this.id = id;
+	public void Create(String promo, Statut statut){
 		this.statut = statut;
 		this.promo = promo;
 	}
@@ -59,10 +52,6 @@ public class User implements Serializable{
 		this.fname = fname;
 		this.lname = lname;
 		this.mail = mail;
-	}
-	
-	public int getId(){
-		return this.id;
 	}
 	
 	public String getFname(){

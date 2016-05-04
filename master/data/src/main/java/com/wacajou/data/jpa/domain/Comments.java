@@ -16,27 +16,19 @@
 
 package com.wacajou.data.jpa.domain;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 import org.springframework.util.Assert;
 
 @Entity
-public class Comments implements Serializable {
+public class Comments extends AbstractEntity {
 
 	private static final long serialVersionUID = 1L;
-
-	@Id
-	@GeneratedValue
-	private Long id;
 
 	@OneToOne(optional = true, fetch = FetchType.LAZY, targetEntity = Module.class)
 	private Module module;

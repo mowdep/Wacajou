@@ -11,11 +11,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Module implements Serializable {
+public class Module extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
-
-	@Id
-	private int id;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "module")
 	private Set<ParcoursModule> parcoursModule;
@@ -41,10 +38,6 @@ public class Module implements Serializable {
 	public Module(String name, String path) {
 		this.name = name;
 		this.path = path;
-	}
-
-	public int getId() {
-		return this.id;
 	}
 
 	public String getPath() {

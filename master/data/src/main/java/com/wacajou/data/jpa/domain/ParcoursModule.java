@@ -10,12 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 @Entity
-public class ParcoursModule implements Serializable {
+public class ParcoursModule extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
-
-	@Id
-	@GeneratedValue
-	private Long id;
 
 	@OneToOne(fetch = FetchType.LAZY, targetEntity = Module.class)
 	private Module module;
@@ -34,10 +30,6 @@ public class ParcoursModule implements Serializable {
 		this.parcours = parcours;
 		this.module = module;
 		this.optional = optional;
-	}
-	
-	public Long getId() {
-		return this.id;
 	}
 
 	public Module getModule() {
