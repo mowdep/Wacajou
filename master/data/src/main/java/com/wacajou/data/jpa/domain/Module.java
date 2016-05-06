@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.hibernate.annotations.NaturalId;
+
 @Entity
 public class Module extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
@@ -17,7 +19,7 @@ public class Module extends AbstractEntity {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "module")
 	private Set<ParcoursModule> parcoursModule;
 
-	@Column(name = "moduleName")
+	@Column(name = "moduleName", unique = true)
 	private String name;
 
 	@OneToOne(fetch = FetchType.LAZY, targetEntity = User.class, optional = true)
@@ -26,6 +28,7 @@ public class Module extends AbstractEntity {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "module")
 	private Set<UserModule> userModule;
 	
+	@Column(name = "path", unique = true)
 	private String path;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "module")

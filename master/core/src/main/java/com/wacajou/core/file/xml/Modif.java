@@ -25,7 +25,7 @@ public class Modif {
 	public void getFile(String path, String filename) throws ParserConfigurationException, SAXException, IOException {
 		this.path = path;
 		this.filename = filename;
-		File inputFile = new File(path + "\\" + filename);
+		File inputFile = new File(path + "\\" + filename + ".xml");
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
 		doc = docBuilder.parse(inputFile);
@@ -57,7 +57,7 @@ public class Modif {
 		Transformer transformer = transformerFactory.newTransformer();
 		DOMSource source = new DOMSource(doc);
 		System.out.println("-----------Modified File-----------");
-		StreamResult consoleResult = new StreamResult(new File(path + "\\" + filename));
+		StreamResult consoleResult = new StreamResult(new File(path + "\\" + filename + ".xml"));
 		transformer.transform(source, consoleResult);
 	}
 }

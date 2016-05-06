@@ -1,5 +1,6 @@
 package com.wacajou.module.ui.view;
 
 public interface ModuleViewHandler {
-//	void login();
+	void create();
+	void onViewEnter(String parameters);
 }

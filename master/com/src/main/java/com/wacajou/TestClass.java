@@ -9,7 +9,6 @@ import org.springframework.core.env.Environment;
 
 @Configuration
 @Profile("one")
-@PropertySource("file:${config.path}/config/app.properties")
 public class TestClass {
 
     @Autowired

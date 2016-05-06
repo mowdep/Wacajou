@@ -17,7 +17,7 @@ public class Query {
 	private Document doc;
 
 	public void getFile(String path, String filename) throws ParserConfigurationException, SAXException, IOException {
-		File inputFile = new File(path + "\\" + filename);
+		File inputFile = new File(path + "\\" + filename + ".xml");
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
 		doc = docBuilder.parse(inputFile);
