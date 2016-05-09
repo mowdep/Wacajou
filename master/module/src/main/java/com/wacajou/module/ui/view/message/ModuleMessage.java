@@ -14,6 +14,9 @@ public class ModuleMessage {
 	public static final String MODULE_SUCCESS_DESCRIPTION = "";
 	public static final String MODULE_NON_SUCCESS_CREATE = "Erreur lors de la création du module";
 	public static final String MODULE_NON_SUCCESS_DESCRIPTION = "";
+<<<<<<< HEAD
 	public static final String MODULE_NON_SUCCESS_CONSULT = "Module non existant";
+=======
+>>>>>>> origin/ShareMaxime
 	
 }

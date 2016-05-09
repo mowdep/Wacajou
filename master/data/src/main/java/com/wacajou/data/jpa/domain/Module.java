@@ -8,6 +8,8 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.hibernate.annotations.NaturalId;
+
 @Entity
 public class Module extends AbstractEntity {
 	private static final long serialVersionUID = 1L;

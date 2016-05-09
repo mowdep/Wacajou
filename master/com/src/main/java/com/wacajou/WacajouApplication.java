@@ -25,7 +25,11 @@ public class WacajouApplication {
 		/* Launch application */
 		ApplicationContext ctx = SpringApplication.run(WacajouApplication.class, args);
 		// getAllBean(ctx);
+<<<<<<< HEAD
 		System.setProperty("application.PATH", "L:\\");
+=======
+		System.setProperty("application.PATH", "C:\\test\\");
+>>>>>>> origin/ShareMaxime
 	}
 
 	@Bean
