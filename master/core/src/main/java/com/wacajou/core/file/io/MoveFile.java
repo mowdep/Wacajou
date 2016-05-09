@@ -15,6 +15,7 @@ public class MoveFile {
 		try {
 			source.replace("\\", "\\\\");
 			target.replace("\\", "\\\\");
+			System.out.println("Source : " + source + "  Target : " + target);
 			File afile = new File(source);
 			File bfile = new File(target);
 

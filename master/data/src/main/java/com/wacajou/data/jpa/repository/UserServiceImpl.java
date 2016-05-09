@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	@Override
-	public User getUser(int id) {
+	public User getUser(Long id) {
 		Assert.notNull(id, "Id must be not null");
 		return this.userRepository.findOne(id);
 	}

@@ -41,11 +41,12 @@ public class Create {
 		TransformerFactory transformerFactory = TransformerFactory.newInstance();
 		Transformer transformer = transformerFactory.newTransformer();
 		DOMSource source = new DOMSource(doc);
-		StreamResult result = new StreamResult(new File(path + "\\" + filename));
-		transformer.transform(source, result);
-		// Output to console for testing
 		
+		// Output to console for testing
 		StreamResult consoleResult = new StreamResult(System.out);
 		transformer.transform(source, consoleResult);
+		
+		StreamResult result = new StreamResult(new File(path + "\\" + filename + ".xml"));
+		transformer.transform(source, result);
 	}
 }

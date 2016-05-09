@@ -17,7 +17,7 @@ public class Query {
 	private Document doc;
 
 	public void getFile(String path, String filename) throws ParserConfigurationException, SAXException, IOException {
-		File inputFile = new File(path + "\\" + filename);
+		File inputFile = new File(path + "\\" + filename + ".xml");
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
 		doc = docBuilder.parse(inputFile);
@@ -29,7 +29,7 @@ public class Query {
 			NodeList nList = node.item(i).getChildNodes();
 			for(int j = 0; j < nList.getLength(); j++){
 				String itemName = nList.item(j).getNodeName();
-				String itemValue = nList.item(j).getTextContent();
+				String itemValue = nList.item(j).getNodeValue();
 				map.put(itemName, itemValue);
 			}
 		}		

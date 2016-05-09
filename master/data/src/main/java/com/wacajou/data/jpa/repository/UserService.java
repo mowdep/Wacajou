@@ -9,7 +9,7 @@ import com.wacajou.data.jpa.domain.Statut;
 import com.wacajou.data.jpa.domain.User;
 
 public interface UserService {
-	User getUser(int id);
+	User getUser(Long id);
 	User getUser(String fname, String lname);
 	Page<User> getUserByPromo(String promo, Pageable pageable);
 	Page<User> getUserByModule(Module module, Pageable pageable);
