@@ -12,6 +12,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 
+import com.wacajou.data.jpa.repository.ModuleRepository;
+
 @Configuration
 @ComponentScan
 @SpringBootApplication
@@ -25,17 +27,7 @@ public class WacajouApplication {
 		/* Launch application */
 		ApplicationContext ctx = SpringApplication.run(WacajouApplication.class, args);
 		// getAllBean(ctx);
-<<<<<<< HEAD
-		System.setProperty("application.PATH", "L:\\");
-=======
 		System.setProperty("application.PATH", "C:\\test\\");
->>>>>>> origin/ShareMaxime
-	}
-
-	@Bean
-	public String ConfigPath(){
-		System.out.println("Chemin actuel de configuration : " + env.getProperty("config.path") + "\\config\\");
-		return env.getProperty("config.path");
 	}
 	
 	private static void getAllBean(ApplicationContext ctx) {

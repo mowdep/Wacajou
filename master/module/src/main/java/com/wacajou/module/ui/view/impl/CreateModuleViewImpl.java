@@ -19,7 +19,7 @@ import com.wacajou.core.file.io.ImageUploader;
 import com.wacajou.data.jpa.domain.Domain;
 import com.wacajou.module.ui.view.CreateModuleView;
 import com.wacajou.module.ui.view.ModuleViewHandler;
-import com.wacajou.module.ui.view.message.ModuleMessage;
+import com.wacajou.module.ui.view.message.Message;
 
 public class CreateModuleViewImpl extends VerticalLayout implements CreateModuleView {
 
@@ -51,21 +51,21 @@ public class CreateModuleViewImpl extends VerticalLayout implements CreateModule
 	public void init() {
 		// TODO Implements all components you need
 		final FormLayout formLayout = new FormLayout();
-		moduleName = new TextField(ModuleMessage.MODULE_NAME_LABEL);
+		moduleName = new TextField(Message.MODULE_NAME_LABEL);
 		moduleName.setRequired(true);
-		moduleName.setDescription(ModuleMessage.MODULE_NAME_DESCRIPTION);
+		moduleName.setDescription(Message.MODULE_NAME_DESCRIPTION);
 		moduleName.addValidator(new NullValidator(lang, false));
 		formLayout.addComponent(moduleName);
 
-		moduleIdentifiant = new TextField(ModuleMessage.MODULE_IDENTIFIANT_LABEL);
+		moduleIdentifiant = new TextField(Message.MODULE_IDENTIFIANT_LABEL);
 		moduleIdentifiant.setRequired(true);
-		moduleIdentifiant.setDescription(ModuleMessage.MODULE_IDENTIFIANT_DESCRIPTION);
+		moduleIdentifiant.setDescription(Message.MODULE_IDENTIFIANT_DESCRIPTION);
 		moduleIdentifiant.addValidator(new NullValidator(lang, false));
 		formLayout.addComponent(moduleIdentifiant);
 
-		moduleDomain = new ComboBox(ModuleMessage.MODULE_DOMAIN_LABEL);
+		moduleDomain = new ComboBox(Message.MODULE_DOMAIN_LABEL);
 		moduleDomain.setRequired(true);
-		moduleDomain.setDescription(ModuleMessage.MODULE_DOMAIN_DESCRIPTION);
+		moduleDomain.setDescription(Message.MODULE_DOMAIN_DESCRIPTION);
 		moduleDomain.addItems(Domain.ELECTRONIC);
 		moduleDomain.addItems(Domain.INFORMATIC);
 		moduleDomain.addItems(Domain.LANGUES);
@@ -74,8 +74,8 @@ public class CreateModuleViewImpl extends VerticalLayout implements CreateModule
 		
 		formLayout.addComponent(moduleDomain);
 
-		moduleDescription = new TextArea(ModuleMessage.MODULE_DESCRIPTION_LABEL);
-		moduleDescription.setDescription(ModuleMessage.MODULE_DESCRIPTION_DESCIPTION);
+		moduleDescription = new TextArea(Message.MODULE_DESCRIPTION_LABEL);
+		moduleDescription.setDescription(Message.MODULE_DESCRIPTION_DESCRIPTION);
 		formLayout.addComponent(moduleDescription);
 
 		Embedded moduleImage = new Embedded("Uploaded Image");
@@ -98,7 +98,7 @@ public class CreateModuleViewImpl extends VerticalLayout implements CreateModule
 	    panel.setContent(panelContent);
 	    formLayout.addComponent(panel);
 	    
-	    moduleSave = new Button(ModuleMessage.MODULE_BUTTON_LABEL);
+	    moduleSave = new Button(Message.MODULE_BUTTON_LABEL);
 		moduleSave.addClickListener(new Button.ClickListener() {
 			/**
 			 * 
@@ -139,24 +139,19 @@ public class CreateModuleViewImpl extends VerticalLayout implements CreateModule
 	}
 
 	@Override
-	public Button getModuleSave() {
-		return moduleSave;
-	}
-
-	@Override
 	public ComboBox getModuleDomain() {
 		return moduleDomain;
 	}
 
 	@Override
 	public void afterSuccessfulCreate() {
-		new Notification(ModuleMessage.MODULE_SUCCESS_CREATE, ModuleMessage.MODULE_SUCCESS_DESCRIPTION,
+		new Notification(Message.MODULE_SUCCESS_CREATE, Message.MODULE_SUCCESS_DESCRIPTION,
 				com.vaadin.ui.Notification.Type.HUMANIZED_MESSAGE).show(Page.getCurrent());
 	}
 
 	@Override
 	public void afterNonSuccessfulCreate(String error) {
-		new Notification(ModuleMessage.MODULE_NON_SUCCESS_CREATE, error,
+		new Notification(Message.MODULE_NON_SUCCESS_CREATE, error,
 				com.vaadin.ui.Notification.Type.ERROR_MESSAGE).show(Page.getCurrent());
 	}
 }

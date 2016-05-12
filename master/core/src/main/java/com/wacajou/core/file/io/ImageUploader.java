@@ -6,16 +6,16 @@ import java.io.OutputStream;
 
 import com.vaadin.server.FileResource;
 import com.vaadin.server.Page;
-import com.vaadin.ui.AbstractComponent;
 import com.vaadin.ui.Embedded;
-import com.vaadin.ui.Image;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.Upload.Receiver;
 import com.vaadin.ui.Upload.SucceededEvent;
 import com.vaadin.ui.Upload.SucceededListener;
 
 public class ImageUploader implements Receiver, SucceededListener {
-    public File file;
+	private static final long serialVersionUID = 6757400107875540011L;
+	
+	public File file;
 	private Embedded image;
 	private String filepath;
 	

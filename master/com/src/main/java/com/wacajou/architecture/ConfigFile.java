@@ -13,6 +13,7 @@ import java.util.Scanner;
 public class ConfigFile {
    
 	private String path = null;
+	private Scanner scanner;
 	
 	public ConfigFile(){
 		
@@ -28,8 +29,9 @@ public class ConfigFile {
 
 			// set the properties value
 			System.out.println("Chemin d'installation des fichiers ?");
-			Scanner user_input = new Scanner(System.in);
-			String path = user_input.next();
+			scanner = new Scanner(System.in);
+			String path = scanner.next();
+			scanner.close();
 			prop.setProperty("PATH", path);
 			this.path = path;
 			

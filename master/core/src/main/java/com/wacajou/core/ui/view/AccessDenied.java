@@ -4,6 +4,7 @@ import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.spring.annotation.SpringView;
 
+@SuppressWarnings("serial")
 @SpringView()
 public class AccessDenied implements View {
 

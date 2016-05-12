@@ -9,8 +9,6 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>data</artifactId>
-	<groupId>com.wacajou</groupId>
-	<version>0.0.1-SNAPSHOT</version>
 	<properties>
 		<main.basedir>${basedir}/../..</main.basedir>
 	</properties>

@@ -8,12 +8,10 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 
 import com.vaadin.server.ServiceException;
-import com.vaadin.server.VaadinSession;
 import com.wacajou.core.file.xml.Query;
 import com.wacajou.data.jpa.domain.Module;
-import com.wacajou.module.model.ModuleServiceImpl;
+import com.wacajou.data.jpa.service.impl.ModuleServiceImpl;
 import com.wacajou.module.ui.view.ConsultModuleView;
-import com.wacajou.module.ui.view.CreateModuleView;
 import com.wacajou.module.ui.view.ModuleViewHandler;
 
 public class ConsultModulePresenter implements ModuleViewHandler {

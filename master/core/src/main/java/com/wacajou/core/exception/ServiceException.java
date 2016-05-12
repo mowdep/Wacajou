@@ -1,5 +1,6 @@
 package com.wacajou.core.exception;
 
+@SuppressWarnings("serial")
 public class ServiceException extends Exception {
 
     public ServiceException() {

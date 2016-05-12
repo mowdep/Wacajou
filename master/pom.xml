@@ -84,6 +84,7 @@
 		<module>com</module>
 		<module>core</module>
 		<module>module</module>
+		
 	</modules>
 	<organization>
 		<name>ISEP</name>
