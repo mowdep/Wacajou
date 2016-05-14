@@ -16,6 +16,7 @@ import com.vaadin.ui.TextArea;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.Upload;
 import com.vaadin.ui.VerticalLayout;
+import com.wacajou.core.component.CustomComboBoxComponent;
 import com.wacajou.core.file.io.ImageUploader;
 import com.wacajou.data.jpa.domain.Domain;
 import com.wacajou.data.jpa.domain.Module;
@@ -23,9 +24,10 @@ import com.wacajou.data.jpa.repository.ModuleRepository;
 import com.wacajou.data.jpa.service.impl.ModuleServiceImpl;
 import com.wacajou.module.ui.view.message.Message;
 import com.wacajou.module.current.component.CreateModuleForm;
-import com.wacajou.module.current.presenter.CreateModulePresenter;
 import com.wacajou.module.current.view.CreateModuleHandler;
 import com.wacajou.module.dev.component.CreateParcoursForm;
+import com.wacajou.module.dev.presenter.CreateParcoursPresenter;
+import com.wacajou.module.dev.view.CreateParcoursHandler;
 
 @SuppressWarnings("serial")
 @SpringComponent
@@ -35,7 +37,7 @@ public class CreateParcoursFormImpl extends VerticalLayout implements CreateParc
 	@Autowired
 	private final ModuleRepository moduleRepository;
 	private CreateParcoursPresenter CreateParcoursPresenter;
-	private CreateModuleHandler handler;
+	private CreateParcoursHandler handler;
 
 	private Module module;
 
@@ -46,7 +48,8 @@ public class CreateParcoursFormImpl extends VerticalLayout implements CreateParc
 	private String lang = "fr";
 	private String image;
 	private ImageUploader receiver;
-
+	private CustomComboBoxComponent moduleCombo;
+	
 	Button save = new Button("Save", FontAwesome.SAVE);
 	CssLayout actions = new CssLayout(save);
 
@@ -54,11 +57,10 @@ public class CreateParcoursFormImpl extends VerticalLayout implements CreateParc
 	public void enter(ViewChangeEvent event) {
 		
 	}
-
-
+	
 	@Override
-	public void setHandler(CreateModuleHandler handler) {
-		this.handler = handler;
+	public void setHandler(CreateParcoursHandler handler) {
+		this.handler = handler;		
 	}
 
 	@Autowired
@@ -77,6 +79,8 @@ public class CreateParcoursFormImpl extends VerticalLayout implements CreateParc
 		this.moduleIdentifiant.setRequired(true);
 		this.moduleDomain.setRequired(true);
 		this.moduleDomain.addItems(Domain.values());
+		
+		moduleCombo = new CustomComboBoxComponent(handler.getModules());
 
 		Embedded moduleImage = new Embedded("Image");
 		moduleImage.setVisible(false);
@@ -92,7 +96,7 @@ public class CreateParcoursFormImpl extends VerticalLayout implements CreateParc
 
 		// Put the components in a panel
 
-		addComponents(moduleName, moduleIdentifiant, moduleDomain, moduleDescription, upload, moduleImage, actions);
+		addComponents(moduleName, moduleIdentifiant, moduleDomain, moduleDescription, upload, moduleImage, moduleCombo, actions);
 
 		setSpacing(true);
 		save.addClickListener(e -> handler.create());

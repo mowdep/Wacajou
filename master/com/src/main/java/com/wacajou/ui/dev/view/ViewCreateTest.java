@@ -11,10 +11,11 @@ import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 import com.wacajou.module.current.component.impl.CreateModuleFormImpl;
+import com.wacajou.module.dev.component.impl.CreateParcoursFormImpl;
 
-@SpringView(name = ViewCreate.VIEW_NAME)
-public class ViewCreate extends VerticalLayout implements View {
-	public static final String VIEW_NAME = "create";
+@SpringView(name = ViewCreateTest.VIEW_NAME)
+public class ViewCreateTest extends VerticalLayout implements View {
+	public static final String VIEW_NAME = "devcreate";
 
 	@Autowired
 	private CreateModuleFormImpl moduleForm;
@@ -23,7 +24,7 @@ public class ViewCreate extends VerticalLayout implements View {
 	private CreateParcoursFormImpl parcoursForm;
 
 	@Autowired
-	public ViewCreate(CreateModuleFormImpl moduleForm, CreateParcoursFormImpl parcoursForm) {
+	public ViewCreateTest(CreateModuleFormImpl moduleForm, CreateParcoursFormImpl parcoursForm) {
 		this.parcoursForm = parcoursForm;
 		this.moduleForm = moduleForm;
 

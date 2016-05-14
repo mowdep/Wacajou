@@ -17,10 +17,12 @@ import com.vaadin.ui.VerticalLayout;
 import com.wacajou.module.current.component.ConsultModuleComponent;
 import com.wacajou.module.current.component.impl.CreateModuleFormImpl;
 import com.wacajou.module.current.component.impl.MinimizeModuleComponentImpl;
+import com.wacajou.module.dev.component.impl.CreateParcoursFormImpl;
 import com.wacajou.module.ui.view.ConsultModuleView;
 import com.wacajou.module.ui.view.CreateModuleView;
 import com.wacajou.module.ui.view.impl.CreateModuleViewImpl;
 import com.wacajou.ui.current.view.ViewCreate;
+import com.wacajou.ui.dev.view.ViewCreateTest;
 
 @SuppressWarnings("serial")
 @SpringUI( path = "/test")
@@ -36,8 +38,8 @@ public class VaadinUI extends UI {
 	private ConsultModuleComponent moduleConsult;
 	@Autowired
 	private CreateModuleFormImpl moduleForm;
-//	@Autowired
-//	private CreateModuleFormImpl parcoursForm;
+	@Autowired
+	private CreateParcoursFormImpl parcoursForm;
 	
 	@Override
 	protected void init(VaadinRequest request) {
@@ -46,6 +48,9 @@ public class VaadinUI extends UI {
 		Button buttonSwitch = new Button("Créer un parcours");
 		Navigator navigator = new Navigator(this, this);
 		ViewCreate createView = new ViewCreate(moduleForm /*, parcoursForm */);
+		ViewCreateTest testView = new ViewCreateTest(moduleForm, parcoursForm);
+		
+		navigator.addView(ViewCreateTest.VIEW_NAME, testView);
 		navigator.addView(ViewCreate.VIEW_NAME, createView);
 		
 		setNavigator(navigator);
